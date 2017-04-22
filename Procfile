@@ -1,1 +1,1 @@
-web: python manage.py start_on_predix
+web: gunicorn manage:app

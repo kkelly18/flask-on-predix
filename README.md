@@ -3,9 +3,30 @@ A codebook demonstrating details for pushing a Flask app on to Predix.
 
 ### Release History
 
+v3.0 - Turn toy into production with Gunicorn WSGI server
+
 v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy).
 
 v1.0 - Simplest (toy) Flask application possible on Predix
+
+#### Release v3.0
+Turn toy into production with Gunicorn WSGI server.
+
+Getting the app production ready is as simple as installing the gunicorn
+package into your local environment and fixing up the run calls in the
+manifest and proc files.
+
+To get the response for the query endpoint you must assemble 
+the URI from the URI provided by CF when it starts your app. It'll
+be on the terminal console.
+
+`https:<hostname and domain>/api/v1.0/` 
+
+returns
+
+`{
+  "hello": "world"
+}`
 
 #### Release v2.0
 Implement a Restful API as simply as possible, still using Flask Web Server (toy).
