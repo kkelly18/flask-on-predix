@@ -1,0 +1,5 @@
+applications:
+  - name: k2dark
+    buildpack: python_buildpack
+    memory: 256M
+command: python flask_app.py
