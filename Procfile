@@ -1,1 +1,1 @@
-web: python flask_app.py
+web: python manage.py start_on_predix

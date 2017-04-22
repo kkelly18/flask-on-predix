@@ -1,6 +1,36 @@
-# flask_on_predix_spike
+# Flask on Predix
+A codebook demonstrating details for pushing a Flask app on to Predix.
 
-### Release 1
+### Release History
+
+v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy).
+
+v1.0 - Simplest (toy) Flask application possible on Predix
+
+#### Release v2.0
+Implement a Restful API as simply as possible, still using Flask Web Server (toy).
+
+This release is a minimal implementation of Flask Blueprints. The "App" is the
+simplest Restful API we could write. It has one route, the index, that responds
+with a string of HTML text.  The goal is to have a minimal architecture seed for
+our Flask apps.
+
+The crux of the implementation is in the package constructors, `__init__.py`.
+The module `manage.py` holds a global reference to the Flask app. It implements commands run
+outside the app. Like `app.run()`!  This pattern seperates concerns of app initializion
+from app operations.
+
+App startup depends on `FLASK_CONFIG` set in the application's user environment.
+The config options are in `config.py`. The script `setcf.sh` can be used to set the variable. If you're pushing the app
+for the fist time, suggest using --no-start option.
+
+`$cf push --no-start -b <link to buildpack>`
+
+`$source setcf.sh`
+
+`$cf start <app name>`
+
+#### Release v1.0
 Simplest (toy) Flask application possible on Predix.
 
 If you're a Python dev using Flask as your web framework, this release is useful for smoke testing local Cloud Foundry (CF) configuration 
@@ -39,5 +69,12 @@ to work out how the app is configured differently for dev and production environ
 This codebook is maintained by the GE Hitachi Digital team based in Wilmington NC.  
 Where the beach is always calling!
 
-Maintainer: kevin.c.kelly@ge.com
-Authors:
+Maintainer: \
+kevin.c.kelly@ge.com
+
+Authors:\
+Kevin Kelly - GE Hitachi\
+kevin.c.kelly@ge.com
+
+Robin Wang -- GE Hitachi\
+xuejun.wang@ge.com
