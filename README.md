@@ -1,11 +1,49 @@
 # Flask on Predix
 A codebook demonstrating details for pushing a Flask app on to Predix.
 
+Prerequisites: \
+To get the most from this codebook:
+
+- You must have some prior experience writing Python applications and have mastery of
+concepts of packages, modules, functions, decorators and object oriented programming.
+
+- You must be knowledgeable of web development. Understanding of HTTP query and response
+patterns and RESTful style architecture is assumed. 
+
+- You must have a Predix account, installed the CLI and familiarized yourself with 
+Cloud Foundry concepts for packaging, pushing and operating an app in the Predix cloud
+environment. 
+
+- You should have an introductory understanding of 
+the Flask web development framework. If you have a copy of Miguel Grinberg's text and
+studied one of his YouTube videos, that will suffice.  
+
 ### Release History
 
-v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy).
+v3.0 - Turn toy into production with Gunicorn WSGI server
+
+v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy)
 
 v1.0 - Simplest (toy) Flask application possible on Predix
+
+#### Release v3.0
+Turn toy into production with Gunicorn WSGI server.
+
+Getting the app production ready is as simple as installing the gunicorn
+package into your local environment and fixing up the run calls in the
+manifest and proc files.
+
+To get the response for the query endpoint you must assemble 
+the URI from the URI provided by CF when it starts your app. It'll
+be on the terminal console.
+
+`https://<hostname and domain>/api/v1.0/` 
+
+returns
+
+`{
+  "hello": "world"
+}`
 
 #### Release v2.0
 Implement a Restful API as simply as possible, still using Flask Web Server (toy).

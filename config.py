@@ -1,6 +1,7 @@
-import logging
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 class Config:
     SECRET_KEY = os.urandom(24)
@@ -21,6 +22,6 @@ class PredixConfig(Config):
 
 
 config = {'development': DevelopmentConfig,
- 'testing': TestingConfig,
- 'predix': PredixConfig,
- 'default': DevelopmentConfig}
+          'testing': TestingConfig,
+          'predix': PredixConfig,
+          'default': DevelopmentConfig}
