@@ -9,6 +9,12 @@ class DataPoint(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     value = db.Column(db.String(64))
 
+
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+
+
     def to_json(self):
         json_data_point = {
             'name': self.name,
@@ -19,3 +25,6 @@ class DataPoint(db.Model):
 
     def __repr__(self):
         return self.to_json()
+
+def from_json(jsonData):
+    return DataPoint(name=jsonData['name'], value=jsonData['value'])
