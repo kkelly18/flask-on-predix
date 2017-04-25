@@ -20,11 +20,35 @@ studied one of his YouTube videos, that will suffice.
 
 ### Release History
 
+v4.0 - Bind to Predix Postgres Database service
+
 v3.0 - Turn toy into production with Gunicorn WSGI server
 
 v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy)
 
 v1.0 - Simplest (toy) Flask application possible on Predix
+
+#### Release v4.0
+Bind to Predix Postgres Database service.
+
+Change the response of the API/V1.0/ index route to send back the
+URI of the Postgres Service instance. The app depends on the service
+being already started and running before the app is deployed and started.
+
+Implement logging and stream log events to `STDOUT` so they can be captured by
+Cloud Foundry.  Developers may inspect the log as a debugging aid.
+
+`$cf logs <your app name> --recent`
+  
+Import and apply Python's ORM package SQLAlchemy and Flask-SQLAlchemy to 
+provide pythonic access to the database service.
+
+Include the Python Postgres Driver `psycopg2` to manage tha actual database 
+protocol binding.
+
+Implement `get_postgres_bindings()` to interrogate CF environment 
+configuration and harvest identifying information, namely the 
+URI, of the Postgres service. 
 
 #### Release v3.0
 Turn toy into production with Gunicorn WSGI server.

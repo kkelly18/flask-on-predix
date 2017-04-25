@@ -8,20 +8,22 @@ class Config:
     DEBUG = False
     TESTING = False
 
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_RECORD_QUERIES = True
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
 
-
-class TestingConfig(Config):
-    TESTING = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
 
 class PredixConfig(Config):
     pass
 
-
 config = {'development': DevelopmentConfig,
-          'testing': TestingConfig,
-          'predix': PredixConfig,
-          'default': DevelopmentConfig}
+          'predix': PredixConfig}
+
+

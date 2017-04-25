@@ -1,5 +1,9 @@
 applications:
   - name: k2dark
-    buildpack: python_buildpack
     memory: 256M
-command: gunicorn manage:app
+    buildpack: https://github.com/cloudfoundry/buildpack-python.git
+    env:
+      FLASK_CONFIG: predix
+services:
+    - k2dark-pg
+
