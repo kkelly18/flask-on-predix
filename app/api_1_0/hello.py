@@ -1,26 +1,22 @@
-from flask import jsonify, request
+import os
+
+from cf_utils import get_postgres_bindings
+
 from . import api
 from .. import db
-from ..models import DataPoint, from_json
-def sqla2dict(model):
-    """ Declarative Base model to dict """
-    return {c.name: getattr(model, c.name) for c in model.__table__.columns}
+
 
 @api.route('/')
 def get_hello():
-    return jsonify({'hello': 'world'})
+    page = ""
 
+    if os.getenv("FLASK_CONFIG") == 'predix':
+        uri, name, label = get_postgres_bindings()
+        page += "<h3>{}</h3>".format(label)
+        page += "<p>name: <b>{}</b></p>".format(name)
+        page += "<p>uri: <b>{}</b></p>".format(uri)
 
-@api.route('/load/', methods=['POST'])
-def load():
-    objs = request.json
-    db.session.add_all([from_json(obj) for obj in objs])
-    db.session.commit()
-    return jsonify({'return': 'ok'})
+    binding_uri = db.get_app()
+    page += "<p>SQLALCHEMY_DATABASE_URI: {}</p>".format(binding_uri.config['SQLALCHEMY_DATABASE_URI'])
 
-
-@api.route('/data/', methods=['GET'])
-def getData():
-    objs = db.session.query(DataPoint)
-    return jsonify([sqla2dict(i) for i in objs])
-
+    return page
