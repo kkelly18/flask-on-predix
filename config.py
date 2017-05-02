@@ -25,5 +25,3 @@ class PredixConfig(Config):
 
 config = {'development': DevelopmentConfig,
           'predix': PredixConfig}
-
-

@@ -20,6 +20,8 @@ studied one of his YouTube videos, that will suffice.
 
 ### Release History
 
+v4.1 - Migrate schema, implement resource to POST and GET data
+
 v4.0 - Bind to Predix Postgres Database service
 
 v3.0 - Turn toy into production with Gunicorn WSGI server
@@ -27,6 +29,21 @@ v3.0 - Turn toy into production with Gunicorn WSGI server
 v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy)
 
 v1.0 - Simplest (toy) Flask application possible on Predix
+
+#### Release v4.1
+Migrate schema, implement resource to POST and GET data.
+
+Implement Flask-SQLAlchemy migration support. See Flask-migrations doc.
+There are three steps: 
+- Define SQLAlchemy models in app/models.py.
+- Create migrations from models. \
+`$python manage.py db init` creates the migrations folder and machinery. 
+Run at dev time, outside of the app. \
+`$python manage.py db migrate` populates migrations folder to be applied at app start time.
+- Apply migrations to the database. \
+`$python manage.py db upgrade` runs before app startup. Incorporate in Procfile web server
+startup command line.
+
 
 #### Release v4.0
 Bind to Predix Postgres Database service.

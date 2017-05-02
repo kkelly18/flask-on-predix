@@ -14,7 +14,7 @@ def get_postgres_bindings():
     :return tuple 
     """
 
-    #todo: consider returning named tuple
+    # todo: consider returning named tuple
 
     binding_uri = None
     binding_name = None
