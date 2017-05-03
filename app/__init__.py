@@ -20,6 +20,8 @@ from cf_utils import get_postgres_bindings
 
 db = SQLAlchemy()
 
+from .models import DataPoint
+
 
 def create_app(config_name):
     app = Flask(__name__)
