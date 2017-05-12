@@ -41,6 +41,10 @@ Template files now exist to remove app-specific details required for deployment.
 Implement UAA authentication
 - Allows login using app_user_1 / app_user_1 .
 - Add /login and /logout routes to /auth api.
+- Requires login before accessing any route.
+
+Notes
+- gunicorn workers are explicitly set to 1 due to issues with UAA authentication and asynchronous sessions
 
 #### Release v4.1
 Migrate schema, implement resource to POST and GET data.

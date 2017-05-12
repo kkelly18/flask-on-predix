@@ -33,8 +33,7 @@ def create_app(config_name):
         app.config.from_object('config.DevelopmentConfig')
     else:
         app.config.from_object('config.PredixConfig')
-        bindings = get_postgres_bindings()
-        app.config['SQLALCHEMY_DATABASE_URI'] = bindings[0]
+        app.config['SQLALCHEMY_DATABASE_URI'], app.config['SQLALCHEMY_DATABASE_NAME'], app.config['SQLALCHEMY_DATABASE_LABEL'] = get_postgres_bindings()
 
     app.config['PREDIX'] = dict(
         request_token_url = None,

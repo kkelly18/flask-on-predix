@@ -31,7 +31,7 @@ def get_postgres_bindings():
                 binding_name = postgres['name']
                 binding_label = postgres['label']
 
-        except KeyError or IndexError:
+        except (KeyError, IndexError):
             logger.exception("Postgres config is missing or mangled ")
             raise ServiceBindingError(vcap_services, "Missing or mangled postgres config")
 
