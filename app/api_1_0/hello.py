@@ -63,7 +63,6 @@ def login():
 def authorized():
     next_url = request.args.get('next')
 
-    # TODO: Determine Gunicorn Worker Types to allow authorized_response() with workers > 1
     data = predix.authorized_response()
 
     session['predix_token'] = (

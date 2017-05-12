@@ -1,0 +1,156 @@
+{
+	"variables": [],
+	"info": {
+		"name": "flask_on_predix",
+		"_postman_id": "fa681619-4ab1-6492-4ed9-a9a03c4e4e39",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseHTML = document.createElement(\"html\");",
+							"responseHTML.innerHTML = responseBody;",
+							"if (responseBody.has(\"X-Uaa-Csrf\")) {",
+							"    postman.setEnvironmentVariable(\"xUaaCsrf\", responseHTML.querySelector('input[name=\"X-Uaa-Csrf\"]').value);   ",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://{{uaaTenantId}}.predix-uaa.run.aws-usw02-pr.ice.predix.io/login.do",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "app_user_1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "app_user_1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "form_redirect_uri",
+							"value": "https://{{uaaTenantId}}.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/authorize?response_type=code&client_id={{uaaClientId}}&redirect_uri={{protocol}}://{{appUrl}}/auth/authorized",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "X-Uaa-Csrf",
+							"value": "{{xUaaCsrf}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseHTML = document.createElement(\"html\");",
+							"responseHTML.innerHTML = responseBody;",
+							"if (responseBody.has(\"X-Uaa-Csrf\")) {",
+							"    postman.setEnvironmentVariable(\"xUaaCsrf\", responseHTML.querySelector('input[name=\"X-Uaa-Csrf\"]').value);   ",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{protocol}}://{{appUrl}}/api/v1.0/windturbine/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n    \t\"name\": \"turbine1\",\n    \t\"value\": \"test\"\n\t},\n\t{\n    \t\"name\": \"turbine2\",\n    \t\"value\": \"test\"\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Query Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseHTML = document.createElement(\"html\");",
+							"responseHTML.innerHTML = responseBody;",
+							"if (responseBody.has(\"X-Uaa-Csrf\")) {",
+							"    postman.setEnvironmentVariable(\"xUaaCsrf\", responseHTML.querySelector('input[name=\"X-Uaa-Csrf\"]').value);   ",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{protocol}}://{{appUrl}}/api/v1.0/windturbine/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseHTML = document.createElement(\"html\");",
+							"responseHTML.innerHTML = responseBody;",
+							"postman.setEnvironmentVariable(\"xUaaCsrf\", responseHTML.querySelector('input[name=\"X-Uaa-Csrf\"]').value);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{protocol}}://{{appUrl}}/auth/logout",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

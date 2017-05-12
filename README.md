@@ -44,7 +44,11 @@ Implement UAA authentication
 - Requires login before accessing any route.
 
 Notes
-- gunicorn workers are explicitly set to 1 due to issues with UAA authentication and asynchronous sessions
+- gunicorn workers are explicitly set to 1 due to issues with UAA authentication and synchronous sessions
+
+Steps:
+1. Run `./create_services.sh`
+2. Import Postman collections and environments to test all API calls.
 
 #### Release v4.1
 Migrate schema, implement resource to POST and GET data.
