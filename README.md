@@ -19,6 +19,7 @@ the Flask web development framework. If you have a copy of Miguel Grinberg's tex
 studied one of his YouTube videos, that will suffice.  
 
 ### Release History
+v5.0 - Add configuration templates and implement UAA authentication
 
 v4.1 - Migrate schema, implement resource to POST and GET data
 
@@ -29,6 +30,17 @@ v3.0 - Turn toy into production with Gunicorn WSGI server
 v2.0 - Implement a Restful API as simply as possible, still using Flask Web Server (toy)
 
 v1.0 - Simplest (toy) Flask application possible on Predix
+
+#### Release v5.0
+Add configuration templates and implement UAA authentication.
+
+Template files now exist to remove app-specific details required for deployment. Running **create_services.sh** will:
+- Create cf services based on provided prefix.
+- Copy *-template.* files to new files without -template suffix.
+- Replace placeholders with actual names of services and apps.
+Implement UAA authentication
+- Allows login using app_user_1 / app_user_1 .
+- Add login and logout routes.
 
 #### Release v4.1
 Migrate schema, implement resource to POST and GET data.

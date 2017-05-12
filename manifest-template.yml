@@ -1,9 +1,9 @@
 applications:
-  - name: k2dark
+  - name: <APP_NAME>
     memory: 256M
     buildpack: https://github.com/cloudfoundry/buildpack-python.git
     env:
       FLASK_CONFIG: predix
 services:
-    - k2dark-pg
+    - <POSTGRES_SERVICE_INSTANCE_NAME>
 
