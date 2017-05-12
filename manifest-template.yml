@@ -1,9 +1,10 @@
 applications:
-  - name: <APP_NAME>
+  - name: <APP_NAME>-flask
     memory: 256M
     buildpack: https://github.com/cloudfoundry/buildpack-python.git
-    env:
-      FLASK_CONFIG: predix
 services:
+    - <UAA_SERVICE_INSTANCE_NAME>
     - <POSTGRES_SERVICE_INSTANCE_NAME>
-
+env:
+    FLASK_CONFIG: predix
+    base64ClientCredential: <BASE_64_CREDENTIALS>

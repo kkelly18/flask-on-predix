@@ -1,2 +1,6 @@
 manifest.yml
 config.py
+venv/
+__pycache__/
+*.pyc
+*.sqlite

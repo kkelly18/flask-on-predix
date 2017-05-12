@@ -23,16 +23,15 @@ clientSecretBase64=`echo -n $prefix-client:$clientSecret | base64`
 uaac client add $prefix-client -s $clientSecret --scope "uaa.none openid" --authorized_grant_types "authorization_code client_credentials refresh_token password" --authorities "openid uaa.none uaa.resource" --autoapprove "openid"
 uaac user add app_user_1 -p app_user_1 --emails app_user_1@email.net
 
-# Copy Templates
-cp manifest-template.yml manifest.yml
-cp config-template.py config.py
-
 # Update Manifest
-sed -i "s/<APP_NAME>/$prefix/" manifest.yml
-sed -i "s/<POSTGRES_SERVICE_INSTANCE_NAME>/$prefix-postgres/" manifest.yml
-# sed -i "s/<CLIENT_ID>/$$prefix-client/g" manifest.yml
-# sed -i "s/<BASE_64_CREDENTIALS>/$clientSecretBase64" manifest.yml
+cp manifest-template.yml manifest.yml
+sed -i '' "s/<APP_NAME>/$prefix/" manifest.yml
+sed -i '' "s/<UAA_SERVICE_INSTANCE_NAME>/$prefix-uaa/" manifest.yml
+sed -i '' "s/<POSTGRES_SERVICE_INSTANCE_NAME>/$prefix-postgres/" manifest.yml
+sed -i '' "s/<BASE_64_CREDENTIALS>/$clientSecretBase64/" manifest.yml
 
 # Update Config
-# sed -i "s/<CLIENT_ID>/$$prefix-client/g" config.py
-# sed -i "s/<BASE_64_CREDENTIALS>/$clientSecretBase64" config.py
+cp config-template.py config.py
+sed -i '' "s@<UAA_TARGET>@$uaaTarget@" config.py
+sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" config.py
+sed -i '' "s/<UAA_CLIENT_SECRET>/$clientSecret/" config.py

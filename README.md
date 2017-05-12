@@ -40,7 +40,7 @@ Template files now exist to remove app-specific details required for deployment.
 - Replace placeholders with actual names of services and apps.
 Implement UAA authentication
 - Allows login using app_user_1 / app_user_1 .
-- Add login and logout routes.
+- Add /login and /logout routes to /auth api.
 
 #### Release v4.1
 Migrate schema, implement resource to POST and GET data.

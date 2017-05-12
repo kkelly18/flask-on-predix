@@ -6,10 +6,9 @@ from flask_migrate import Migrate, MigrateCommand
 from app import create_app, logger, db
 
 
-flask_config = os.getenv('FLASK_CONFIG')
-if not flask_config:
+flask_config = os.getenv('FLASK_CONFIG') or 'development'
+if flask_config == 'development':
     logger.info("Using development config")
-    flask_config = 'development'
 
 logger.info("configured as: {}".format(flask_config))
 
