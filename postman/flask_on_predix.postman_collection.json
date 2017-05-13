@@ -96,7 +96,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n\t{\n    \t\"name\": \"turbine1\",\n    \t\"42\": \"test\"\n\t},\n\t{\n    \t\"name\": \"23\",\n    \t\"value\": \"test\"\n\t}\n]"
+					"raw": "[\n\t{\n    \t\"name\": \"turbine1\",\n    \t\"value\": \"42\"\n\t},\n\t{\n    \t\"name\": \"turbine2\",\n    \t\"value\": \"23\"\n\t}\n]"
 				},
 				"description": ""
 			},
