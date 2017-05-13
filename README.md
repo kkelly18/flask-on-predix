@@ -36,7 +36,7 @@ Add configuration templates and implement UAA authentication.
 
 Template files now exist to remove app-specific details required for deployment. Running **create_services.sh** will:
 - Create cf services based on provided prefix.
-- Copy %2A-template.%2A files to new files without -template suffix.
+- Copy \*-template.\* files to new files without -template suffix.
 - Replace placeholders with actual names of services and apps.
 Implement UAA authentication
 - Allows login using **app_user_1** for both the username and password.
