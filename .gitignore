@@ -1,0 +1,9 @@
+manifest.yml
+config.py
+venv/
+__pycache__/
+*.pyc
+*.sqlite
+postman/flask_on_predix_local.json
+postman/flask_on_predix_prod.json
+migrations/
