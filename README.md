@@ -36,10 +36,10 @@ Add configuration templates and implement UAA authentication.
 
 Template files now exist to remove app-specific details required for deployment. Running **create_services.sh** will:
 - Create cf services based on provided prefix.
-- Copy *-template.* files to new files without -template suffix.
+- Copy %2A-template.%2A files to new files without -template suffix.
 - Replace placeholders with actual names of services and apps.
 Implement UAA authentication
-- Allows login using app_user_1 / app_user_1 .
+- Allows login using **app_user_1** for both the username and password.
 - Add /login and /logout routes to /auth api.
 - Requires login before accessing any route.
 
@@ -50,7 +50,9 @@ Steps:
 1. Run `./create_services.sh`
 2. Import Postman collections and environments to test all API calls.
 3. Test locally with `python manage.py db upgrade && gunicorn manage:app --workers=1`
-4. View in browser or use Postman Requests:
+4. View in browser or use **Postman Requests**:
+ - Import **flask_on_predix.postman_collection.json** using Import button.
+ - Import **flask_on_predix_local.json** and **flask_on_predix_prod.json** using Manage Environments > Import.
  - Use **Logout** request first to create a session.
  - Use **Login** request to store access token.
  - Import data using **Insert Data** request.
