@@ -50,7 +50,11 @@ Steps:
 1. Run `./create_services.sh`
 2. Import Postman collections and environments to test all API calls.
 3. Test locally with `python manage.py db upgrade && gunicorn manage:app --workers=1`
-4. Import data using Postman **Insert Data** request.
+4. View in browser or use Postman Requests:
+ - Use **Logout** request first to create a session.
+ - Use **Login** request to store access token.
+ - Import data using **Insert Data** request.
+ - Query data using **Query Data** request.
 
 #### Release v4.1
 Migrate schema, implement resource to POST and GET data.

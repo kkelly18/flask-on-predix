@@ -10,6 +10,7 @@ cf create-service postgres shared-nr $prefix-postgres
 # Configure UAA Instance
 echo -n "Type your desired UAA admin client password, and hit [ENTER]: "
 read -s adminClientSecret
+echo -e
 cf cs predix-uaa Free $prefix-uaa -c '{"adminClientSecret": "'"$adminClientSecret"'"}'
 
 uaaTenant=`cf service $prefix-uaa --guid`
@@ -37,14 +38,14 @@ sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" config.py
 sed -i '' "s/<UAA_CLIENT_SECRET>/$clientSecret/" config.py
 
 # Update Postman Environments
-cp postman/flask_on_predix_postman_env_local-template.json postman/flask_on_predix_postman_env_local.json
-sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_postman_env_local.json
-sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_postman_env_local.json
+cp postman/flask_on_predix_local-template.json postman/flask_on_predix_local.json
+sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_local.json
+sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_local.json
 
-cp postman/flask_on_predix_postman_env_predix-template.json postman/flask_on_predix_postman_env_predix.json
-sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_postman_env_predix.json
-sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_postman_env_predix.json
-sed -i '' "s/<APP_URL>/$prefix-flask.run.aws-usw02-pr.ice.predix.io/" postman/flask_on_predix_postman_env_predix.json
+cp postman/flask_on_predix_prod-template.json postman/flask_on_predix_prod.json
+sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_local.json
+sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_local.json
+sed -i '' "s/<APP_URL>/$prefix-flask.run.aws-usw02-pr.ice.predix.io/" postman/flask_on_predix_local.json
 
 # Config SQLAlchemy
 python manage.py db init

@@ -4,5 +4,6 @@ venv/
 __pycache__/
 *.pyc
 *.sqlite
-postman/flask_on_predix_postman_env_local.json
-postman/flask_on_predix_postman_env_predix.json
+postman/flask_on_predix_local.json
+postman/flask_on_predix_prod.json
+migrations/
