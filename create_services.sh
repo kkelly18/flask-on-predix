@@ -43,9 +43,9 @@ sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_local.json
 sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_local.json
 
 cp postman/flask_on_predix_prod-template.json postman/flask_on_predix_prod.json
-sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_local.json
-sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_local.json
-sed -i '' "s/<APP_URL>/$prefix-flask.run.aws-usw02-pr.ice.predix.io/" postman/flask_on_predix_local.json
+sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_prod.json
+sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_prod.json
+sed -i '' "s/<APP_URL>/$prefix-flask.run.aws-usw02-pr.ice.predix.io/" postman/flask_on_predix_prod.json
 
 # Config SQLAlchemy
 python manage.py db init

@@ -53,10 +53,12 @@ Steps:
 4. View in browser or use **Postman Requests**:
  - Import **flask_on_predix.postman_collection.json** using Import button.
  - Import **flask_on_predix_local.json** and **flask_on_predix_prod.json** using Manage Environments > Import.
+ - Select **flask_on_predix (local)** as environment.
  - Use **Logout** request first to create a session.
  - Use **Login** request to store access token.
  - Import data using **Insert Data** request.
  - Query data using **Query Data** request.
+ - To test in predix, swtch to **flask_on_predix (predix)**.
 
 #### Release v4.1
 Migrate schema, implement resource to POST and GET data.
