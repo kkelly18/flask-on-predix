@@ -25,7 +25,7 @@ uaac user add app_user_1 -p app_user_1 --emails app_user_1@email.net
 
 # Update Manifest
 cp manifest-template.yml manifest.yml
-sed -i '' "s/<APP_NAME>/$prefix/" manifest.yml
+sed -i '' "s/<APP_NAME>/$prefix-flask/" manifest.yml
 sed -i '' "s/<UAA_SERVICE_INSTANCE_NAME>/$prefix-uaa/" manifest.yml
 sed -i '' "s/<POSTGRES_SERVICE_INSTANCE_NAME>/$prefix-postgres/" manifest.yml
 sed -i '' "s/<BASE_64_CREDENTIALS>/$clientSecretBase64/" manifest.yml
@@ -35,3 +35,18 @@ cp config-template.py config.py
 sed -i '' "s@<UAA_TARGET>@$uaaTarget@" config.py
 sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" config.py
 sed -i '' "s/<UAA_CLIENT_SECRET>/$clientSecret/" config.py
+
+# Update Postman Environments
+cp postman/flask_on_predix_postman_env_local-template.json postman/flask_on_predix_postman_env_local.json
+sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_postman_env_local.json
+sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_postman_env_local.json
+
+cp postman/flask_on_predix_postman_env_predix-template.json postman/flask_on_predix_postman_env_predix.json
+sed -i '' "s/<UAA_TENANT_ID>/$uaaTenant/" postman/flask_on_predix_postman_env_predix.json
+sed -i '' "s/<UAA_CLIENT_ID>/$prefix-client/" postman/flask_on_predix_postman_env_predix.json
+sed -i '' "s/<APP_URL>/$prefix-flask.run.aws-usw02-pr.ice.predix.io/" postman/flask_on_predix_postman_env_predix.json
+
+# Config SQLAlchemy
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade

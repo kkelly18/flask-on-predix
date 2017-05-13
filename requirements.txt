@@ -6,4 +6,3 @@ SQLAlchemy
 Flask-SQLAlchemy
 Flask-Migrate
 Flask-OAuthlib
-gevent

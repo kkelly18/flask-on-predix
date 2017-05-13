@@ -17,13 +17,13 @@
     {
       "enabled": true,
       "key": "uaaTenantId",
-      "value": "",
+      "value": "<UAA_TENANT_ID>",
       "type": "text"
     },
     {
       "enabled": true,
       "key": "uaaClientId",
-      "value": "",
+      "value": "<UAA_CLIENT_ID>",
       "type": "text"
     },
     {
